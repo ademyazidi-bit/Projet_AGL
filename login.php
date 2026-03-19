@@ -1,18 +1,24 @@
 <?php
 
-$conn = mysqli_connect("localhost","root","","fitplanner");
+$conn = mysqli_connect("localhost", "root", "", "fitplanner");
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM users 
-        WHERE email='$email' AND password='$password'";
+// fetch user by email only
+$sql = "SELECT * FROM users WHERE email='$email'";
+$result = mysqli_query($conn, $sql);
 
-$result = mysqli_query($conn,$sql);
+if (mysqli_num_rows($result) > 0) {
+    $user = mysqli_fetch_assoc($result);
 
-if(mysqli_num_rows($result) > 0){
-    echo "Login successful";
-}else{
+    // verify entered password against the stored hash
+    if (password_verify($password, $user['password'])) {
+        echo "Login successful";
+    } else {
+        echo "Wrong email or password";
+    }
+} else {
     echo "Wrong email or password";
 }
 
