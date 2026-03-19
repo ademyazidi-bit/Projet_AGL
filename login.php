@@ -14,7 +14,11 @@ if (mysqli_num_rows($result) > 0) {
 
     // verify entered password against the stored hash
     if (password_verify($password, $user['password'])) {
-        echo "Login successful";
+        session_start();
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['fullname'] = $user['fullname'];
+        header("Location: workout_generator.html");
+        exit();
     } else {
         echo "Wrong email or password";
     }
