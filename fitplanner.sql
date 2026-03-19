@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2026 at 10:49 AM
+-- Generation Time: Mar 19, 2026 at 01:51 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -137,7 +137,8 @@ INSERT INTO `users` (`id`, `fullname`, `email`, `password`, `created_at`) VALUES
 (6, 'hamma', 'hamma.yahia.31.05@gmail.com', '123', '2026-03-17 15:29:21'),
 (7, 'youssef', 'youssef.yahia.31.05@gmail.com', '123', '2026-03-17 15:30:13'),
 (8, 'mohamed', 'mohamed.yahia.31.05@gmail.com', '123', '2026-03-18 14:49:36'),
-(10, '7amadi', 'adsda@gmail.com', '$2y$10$eBuAUYAqxTym2BdgmHcWW.002qc3k/hslUjbGN3lX6Q0o2vpP0sqO', '2026-03-19 08:56:37');
+(10, '7amadi', 'adsda@gmail.com', '$2y$10$eBuAUYAqxTym2BdgmHcWW.002qc3k/hslUjbGN3lX6Q0o2vpP0sqO', '2026-03-19 08:56:37'),
+(11, 'anan', 'adsddsda@gmail.com', '$2y$10$P2O2tV1WI68JvkUch2B4PuDwADGIZhpq2fKwjbPwxfZH1b7qFF2Zq', '2026-03-19 11:34:25');
 
 -- --------------------------------------------------------
 
@@ -150,37 +151,66 @@ CREATE TABLE `workouts` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `goal` varchar(100) DEFAULT NULL,
-  `generated_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `generated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `saved` tinyint(1) DEFAULT 0,
+  `name` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `workouts`
 --
 
-INSERT INTO `workouts` (`id`, `user_id`, `goal`, `generated_at`) VALUES
-(4, 6, 'Weight Loss', '2026-03-19 09:01:12'),
-(5, 6, 'Muscle Gain', '2026-03-19 09:01:34'),
-(6, 6, 'Muscle Gain', '2026-03-19 09:01:51'),
-(7, 6, 'Muscle Gain', '2026-03-19 09:07:32'),
-(8, 6, 'Muscle Gain', '2026-03-19 09:13:42'),
-(9, 6, 'General Fitness', '2026-03-19 09:14:28'),
-(10, 6, 'Muscle Gain', '2026-03-19 09:14:41'),
-(11, 6, 'Muscle Gain', '2026-03-19 09:14:53'),
-(12, 6, 'Weight Loss', '2026-03-19 09:14:59'),
-(13, 6, 'Weight Loss', '2026-03-19 09:15:14'),
-(14, 6, 'Maintain Weight', '2026-03-19 09:18:48'),
-(15, 6, 'Muscle Gain', '2026-03-19 09:28:09'),
-(16, 6, 'Weight Loss', '2026-03-19 09:28:30'),
-(17, 6, 'Maintain Weight', '2026-03-19 09:28:40'),
-(18, 6, 'Weight Loss', '2026-03-19 09:33:52'),
-(19, 6, 'Muscle Gain', '2026-03-19 09:34:10'),
-(20, 6, 'Muscle Gain', '2026-03-19 09:34:24'),
-(21, 6, 'Muscle Gain', '2026-03-19 09:39:42'),
-(22, 6, 'Weight Loss', '2026-03-19 09:41:18'),
-(23, 6, 'Weight Loss', '2026-03-19 09:45:01'),
-(24, 6, 'Weight Loss', '2026-03-19 09:45:09'),
-(25, 6, 'Weight Loss', '2026-03-19 09:48:32'),
-(26, 6, 'Weight Loss', '2026-03-19 09:48:41');
+INSERT INTO `workouts` (`id`, `user_id`, `goal`, `generated_at`, `saved`, `name`) VALUES
+(4, 6, 'Weight Loss', '2026-03-19 09:01:12', 0, NULL),
+(5, 6, 'Muscle Gain', '2026-03-19 09:01:34', 0, NULL),
+(6, 6, 'Muscle Gain', '2026-03-19 09:01:51', 0, NULL),
+(7, 6, 'Muscle Gain', '2026-03-19 09:07:32', 0, NULL),
+(8, 6, 'Muscle Gain', '2026-03-19 09:13:42', 0, NULL),
+(9, 6, 'General Fitness', '2026-03-19 09:14:28', 0, NULL),
+(10, 6, 'Muscle Gain', '2026-03-19 09:14:41', 0, NULL),
+(11, 6, 'Muscle Gain', '2026-03-19 09:14:53', 0, NULL),
+(12, 6, 'Weight Loss', '2026-03-19 09:14:59', 0, NULL),
+(13, 6, 'Weight Loss', '2026-03-19 09:15:14', 0, NULL),
+(14, 6, 'Maintain Weight', '2026-03-19 09:18:48', 0, NULL),
+(15, 6, 'Muscle Gain', '2026-03-19 09:28:09', 0, NULL),
+(16, 6, 'Weight Loss', '2026-03-19 09:28:30', 0, NULL),
+(17, 6, 'Maintain Weight', '2026-03-19 09:28:40', 0, NULL),
+(18, 6, 'Weight Loss', '2026-03-19 09:33:52', 0, NULL),
+(19, 6, 'Muscle Gain', '2026-03-19 09:34:10', 0, NULL),
+(20, 6, 'Muscle Gain', '2026-03-19 09:34:24', 0, NULL),
+(21, 6, 'Muscle Gain', '2026-03-19 09:39:42', 0, NULL),
+(22, 6, 'Weight Loss', '2026-03-19 09:41:18', 0, NULL),
+(23, 6, 'Weight Loss', '2026-03-19 09:45:01', 0, NULL),
+(24, 6, 'Weight Loss', '2026-03-19 09:45:09', 0, NULL),
+(25, 6, 'Weight Loss', '2026-03-19 09:48:32', 0, NULL),
+(26, 6, 'Weight Loss', '2026-03-19 09:48:41', 0, NULL),
+(27, 6, 'Muscle Gain', '2026-03-19 09:57:19', 0, NULL),
+(28, 6, 'Muscle Gain', '2026-03-19 09:57:30', 0, NULL),
+(29, 6, 'Muscle Gain', '2026-03-19 10:02:08', 0, NULL),
+(30, 6, 'Weight Loss', '2026-03-19 10:09:04', 0, NULL),
+(31, 6, 'Muscle Gain', '2026-03-19 10:09:54', 0, NULL),
+(32, 6, 'Weight Loss', '2026-03-19 10:20:01', 0, NULL),
+(33, 6, 'Weight Loss', '2026-03-19 10:21:02', 0, NULL),
+(34, 6, 'Muscle Gain', '2026-03-19 10:23:09', 0, NULL),
+(35, 6, 'Weight Loss', '2026-03-19 10:23:23', 0, NULL),
+(36, 6, 'Weight Loss', '2026-03-19 11:10:12', 0, NULL),
+(37, 6, 'Muscle Gain', '2026-03-19 11:46:58', 0, NULL),
+(38, 6, 'Weight Loss', '2026-03-19 11:47:41', 0, NULL),
+(39, 6, 'Weight Loss', '2026-03-19 11:51:02', 0, NULL),
+(40, 6, 'Weight Loss', '2026-03-19 11:53:58', 0, NULL),
+(41, 6, 'Weight Loss', '2026-03-19 11:54:14', 0, NULL),
+(42, 6, 'Weight Loss', '2026-03-19 11:54:27', 0, NULL),
+(43, 6, 'Weight Loss', '2026-03-19 11:56:26', 0, NULL),
+(44, 6, 'Weight Loss', '2026-03-19 11:58:40', 0, NULL),
+(45, 6, 'Weight Loss', '2026-03-19 11:59:46', 0, NULL),
+(46, 10, 'Weight Loss', '2026-03-19 12:02:45', 1, 'ds'),
+(47, 10, 'Weight Loss', '2026-03-19 12:04:25', 0, NULL),
+(48, 10, 'Weight Loss', '2026-03-19 12:11:49', 1, 'dsd'),
+(49, 10, 'Weight Loss', '2026-03-19 12:16:27', 0, NULL),
+(50, 10, 'Muscle Gain', '2026-03-19 12:26:52', 1, 'saasadada'),
+(51, 10, 'Muscle Gain', '2026-03-19 12:27:09', 0, NULL),
+(52, 11, 'Weight Loss', '2026-03-19 12:28:06', 1, 'dsada'),
+(53, 10, 'Weight Loss', '2026-03-19 12:47:05', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -289,7 +319,101 @@ INSERT INTO `workout_exercises` (`id`, `workout_id`, `exercise_id`) VALUES
 (87, 25, 78),
 (88, 26, 71),
 (89, 26, 66),
-(90, 26, 78);
+(90, 26, 78),
+(91, 27, 42),
+(92, 27, 49),
+(93, 27, 53),
+(94, 27, 60),
+(95, 27, 63),
+(96, 28, 45),
+(97, 28, 46),
+(98, 29, 44),
+(99, 29, 48),
+(100, 29, 51),
+(101, 29, 56),
+(102, 29, 64),
+(103, 30, 71),
+(104, 30, 67),
+(105, 30, 78),
+(106, 31, 44),
+(107, 31, 48),
+(108, 31, 54),
+(109, 31, 56),
+(110, 31, 64),
+(111, 32, 72),
+(112, 32, 67),
+(113, 32, 78),
+(114, 33, 72),
+(115, 33, 67),
+(116, 33, 78),
+(117, 34, 43),
+(118, 34, 48),
+(119, 34, 54),
+(120, 34, 59),
+(121, 34, 65),
+(122, 35, 73),
+(123, 35, 69),
+(124, 35, 76),
+(125, 36, 74),
+(126, 36, 66),
+(127, 36, 78),
+(128, 37, 44),
+(129, 37, 48),
+(130, 37, 54),
+(131, 37, 56),
+(132, 37, 65),
+(133, 38, 71),
+(134, 38, 67),
+(135, 38, 78),
+(136, 39, 71),
+(137, 39, 67),
+(138, 39, 78),
+(139, 40, 71),
+(140, 40, 67),
+(141, 40, 78),
+(142, 41, 71),
+(143, 41, 67),
+(144, 41, 78),
+(145, 42, 72),
+(146, 42, 67),
+(147, 42, 78),
+(148, 43, 74),
+(149, 43, 67),
+(150, 43, 78),
+(151, 44, 74),
+(152, 44, 66),
+(153, 44, 78),
+(154, 45, 74),
+(155, 45, 66),
+(156, 45, 78),
+(157, 46, 72),
+(158, 46, 67),
+(159, 46, 78),
+(160, 47, 71),
+(161, 47, 67),
+(162, 47, 78),
+(163, 48, 74),
+(164, 48, 66),
+(165, 48, 78),
+(166, 49, 72),
+(167, 49, 67),
+(168, 49, 78),
+(169, 50, 43),
+(170, 50, 48),
+(171, 50, 51),
+(172, 50, 56),
+(173, 50, 65),
+(174, 51, 44),
+(175, 51, 48),
+(176, 51, 54),
+(177, 51, 56),
+(178, 51, 65),
+(179, 52, 72),
+(180, 52, 67),
+(181, 52, 78),
+(182, 53, 72),
+(183, 53, 66),
+(184, 53, 78);
 
 --
 -- Indexes for dumped tables
@@ -351,19 +475,19 @@ ALTER TABLE `exercises`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `workouts`
 --
 ALTER TABLE `workouts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `workout_exercises`
 --
 ALTER TABLE `workout_exercises`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
 
 --
 -- Constraints for dumped tables
